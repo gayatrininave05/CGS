@@ -1,0 +1,2625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitkara Grocery Store</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* ====== Global Styles ====== */
+        :root {
+            --primary: #40aa54;
+            --primary-dark: #2e7d32;
+            --secondary: #ff9800;
+            --dark: #333;
+            --light: #f5f5f5;
+            --gray: #777;
+            --white: #fff;
+            --danger: #e53935;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+        }
+
+        /* ====== Header & Navigation ====== */
+        header {
+            background: var(--white);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            margin-left: 20px;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .nav-icons .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* ====== Hero Section ====== */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1583258292688-d0213dc5a3a8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1074&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            color: var(--white);
+            text-align: center;
+            margin-top: 70px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 30px;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 5px 0 0 5px;
+            font-size: 1rem;
+        }
+
+        .search-box button {
+            padding: 0 20px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        /* ====== Countdown Timer ====== */
+        .countdown-section {
+            background: var(--primary);
+            color: var(--white);
+            padding: 30px 0;
+            text-align: center;
+        }
+
+        .countdown-title {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+        }
+
+        .countdown-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+        }
+
+        .countdown-box {
+            text-align: center;
+        }
+
+        .countdown-value {
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+        }
+
+        /* ====== Categories Section ====== */
+        .categories {
+            padding: 80px 0;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .category-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .category-img {
+            height: 150px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: #f9f9f9;
+        }
+
+        .category-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .category-info {
+            padding: 20px;
+        }
+
+        .category-info h3 {
+            margin-bottom: 10px;
+        }
+
+        /* ====== Products Section ====== */
+        .products {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: var(--primary);
+            color: var(--white);
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .product-wishlist {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 35px;
+            height: 35px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            color: var(--gray);
+            transition: all 0.3s;
+        }
+
+        .product-wishlist.active {
+            color: var(--danger);
+        }
+
+        .product-wishlist:hover {
+            color: var(--danger);
+        }
+
+        .product-img {
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .product-img img {
+            max-height: 100%;
+            max-width: 100%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            padding: 20px;
+        }
+
+        .product-info h3 {
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+
+        .product-meta {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 15px;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .old-price {
+            font-size: 0.9rem;
+            color: var(--gray);
+            text-decoration: line-through;
+            margin-right: 10px;
+        }
+
+        .product-rating {
+            color: var(--secondary);
+            font-size: 0.9rem;
+        }
+
+        .product-btn {
+            width: 100%;
+            text-align: center;
+            padding: 10px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+            font-weight: 500;
+        }
+
+        .product-btn:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ====== Bundle Packs ====== */
+        .bundles {
+            padding: 80px 0;
+        }
+
+        /* ====== Testimonials ====== */
+        .testimonials {
+            padding: 80px 0;
+            background: #f9f9f9;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .testimonial-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 20px;
+        }
+
+        .testimonial-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-user h4 {
+            margin-bottom: 5px;
+        }
+
+        .testimonial-user p {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+
+        .testimonial-rating {
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+
+        /* ====== Partners ====== */
+        .partners {
+            padding: 60px 0;
+            text-align: center;
+        }
+
+        .partner-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .partner-img {
+            height: 50px;
+            filter: grayscale(100%);
+            opacity: 0.7;
+            transition: all 0.3s;
+        }
+
+        .partner-img:hover {
+            filter: grayscale(0%);
+            opacity: 1;
+        }
+
+        .partner-img img {
+            height: 100%;
+            object-fit: contain;
+        }
+
+        /* ====== App Download ====== */
+        .app-download {
+            padding: 80px 0;
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .app-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .app-img {
+            flex: 1;
+            text-align: center;
+        }
+
+        .app-img img {
+            max-width: 300px;
+        }
+
+        .app-content {
+            flex: 1;
+            padding-left: 50px;
+        }
+
+        .app-content h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .app-content p {
+            margin-bottom: 30px;
+            font-size: 1.1rem;
+        }
+
+        .app-buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .app-btn {
+            display: flex;
+            align-items: center;
+            background: var(--white);
+            color: var(--dark);
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .app-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .app-btn i {
+            font-size: 1.8rem;
+            margin-right: 10px;
+        }
+
+        .app-btn-text small {
+            display: block;
+            font-size: 0.7rem;
+        }
+
+        .app-btn-text span {
+            font-weight: 600;
+        }
+
+        /* ====== Footer ====== */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-col h3 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 2px;
+            background: var(--primary);
+        }
+
+        .footer-col ul {
+            list-style: none;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bbb;
+            transition: color 0.3s;
+        }
+
+        .footer-col ul li a:hover {
+            color: var(--primary);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transition: all 0.3s;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+        }
+
+        /* ====== Modal ====== */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 500px;
+            margin: 50px auto;
+            border-radius: 10px;
+            overflow: hidden;
+            animation: modalFadeIn 0.3s;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .modal-header {
+            padding: 20px;
+            background: var(--primary);
+            color: var(--white);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-header h3 {
+            font-size: 1.3rem;
+        }
+
+        .modal-close {
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .modal-close:hover {
+            transform: rotate(90deg);
+        }
+
+        .modal-body {
+            padding: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border 0.3s;
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        .form-footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .form-footer p {
+            margin-top: 15px;
+            color: var(--gray);
+        }
+
+        .form-footer a {
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* ====== Cart Modal ====== */
+        .cart-items {
+            max-height: 400px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+
+        .cart-item {
+            display: flex;
+            align-items: center;
+            padding: 15px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .cart-item-img {
+            width: 70px;
+            height: 70px;
+            margin-right: 15px;
+        }
+
+        .cart-item-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .cart-item-info {
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .cart-item-price {
+            color: var(--primary);
+            font-weight: 600;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 5px;
+        }
+
+        .cart-item-quantity button {
+            width: 25px;
+            height: 25px;
+            background: #f0f0f0;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+        }
+
+        .cart-item-quantity input {
+            width: 40px;
+            text-align: center;
+            margin: 0 5px;
+            border: 1px solid #ddd;
+            border-radius: 3px;
+            padding: 3px;
+        }
+
+        .cart-item-remove {
+            color: var(--danger);
+            cursor: pointer;
+            margin-left: 15px;
+        }
+
+        .cart-summary {
+            padding: 20px;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .cart-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* ====== Profile Modal ====== */
+        .profile-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .profile-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 15px;
+            overflow: hidden;
+            border: 3px solid var(--primary);
+        }
+
+        .profile-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .profile-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .profile-email {
+            color: var(--gray);
+        }
+
+        .profile-menu {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .profile-menu li {
+            margin-bottom: 10px;
+        }
+
+        .profile-menu a {
+            display: block;
+            padding: 10px;
+            border-radius: 5px;
+            transition: all 0.3s;
+        }
+
+        .profile-menu a:hover, .profile-menu a.active {
+            background: rgba(64, 170, 84, 0.1);
+            color: var(--primary);
+        }
+
+        .profile-menu i {
+            margin-right: 10px;
+            width: 20px;
+            text-align: center;
+        }
+
+        /* ====== Responsive Styles ====== */
+        @media (max-width: 992px) {
+            .app-container {
+                flex-direction: column;
+            }
+
+            .app-content {
+                padding-left: 0;
+                margin-top: 30px;
+                text-align: center;
+            }
+
+            .app-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: var(--white);
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                transition: all 0.5s;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+
+            .countdown-container {
+                flex-wrap: wrap;
+            }
+
+            .countdown-box {
+                width: 45%;
+                margin-bottom: 20px;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .hero {
+                height: 400px;
+            }
+
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+
+            .search-box {
+                flex-direction: column;
+            }
+
+            .search-box input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .search-box button {
+                border-radius: 5px;
+                padding: 15px;
+            }
+
+            .countdown-box {
+                width: 100%;
+            }
+
+            .app-buttons {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .app-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo"><span>C</span>GS</a>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="cate.html">Categories</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contect.html">Contact</a></li>
+                    <li><a href="abo.html">About</a></li>
+                </ul>
+                
+                <div class="nav-icons">
+                    <a href="#" id="search-btn"><i class="fas fa-search"></i></a>
+                    <a href="#" id="wishlist-btn"><i class="far fa-heart"></i><span class="badge" id="wishlist-count">0</span></a>
+                    <a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i><span class="badge" id="cart-count">0</span></a>
+                    <a href="#" id="user-btn"><i class="far fa-user"></i></a>
+                </div>
+                
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Fresh Groceries Delivered to Your Doorstep</h1>
+                <p>Shop the best quality fruits, vegetables, and groceries at affordable prices with free delivery</p>
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Search for products...">
+                    <button id="search-button"><i class="fas fa-search"></i></button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="container">
+            <h2 class="countdown-title">Republic Day Sale Ends In:</h2>
+            <div class="countdown-container">
+                <div class="countdown-box">
+                    <div class="countdown-value" id="days">00</div>
+                    <div class="countdown-label">Days</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="hours">00</div>
+                    <div class="countdown-label">Hours</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="minutes">00</div>
+                    <div class="countdown-label">Minutes</div>
+                </div>
+                <div class="countdown-box">
+                    <div class="countdown-value" id="seconds">00</div>
+                    <div class="countdown-label">Seconds</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <h2 class="section-title">Shop By Categories</h2>
+            <div class="category-grid">
+                <a href="#" class="category-card" data-category="fruits">
+                    <div class="category-img">
+                        <img src="https://i.imgur.com/lvk68rp.png" alt="Fruits & Vegetables">
+                    </div>
+                    <div class="category-info">
+                        <h3>Fruits & Vegetables</h3>
+                        <p>100+ Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-category="medicines">
+                    <div class="category-img">
+                        <img src="https://i.imgur.com/4sjlmg3.png" alt="Medicines">
+                    </div>
+                    <div class="category-info">
+                        <h3>Medicines</h3>
+                        <p>50+ Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-category="baby">
+                    <div class="category-img">
+                        <img src="https://i.imgur.com/uvd01HH.png" alt="Baby Care">
+                    </div>
+                    <div class="category-info">
+                        <h3>Baby Care</h3>
+                        <p>80+ Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-category="stationery">
+                    <div class="category-img">
+                        <img src="https://i.imgur.com/N5a3WUT.png" alt="Stationery">
+                    </div>
+                    <div class="category-info">
+                        <h3>Stationery</h3>
+                        <p>60+ Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-category="beauty">
+                    <div class="category-img">
+                        <img src="https://i.imgur.com/Bm0yLex.png" alt="Beauty">
+                    </div>
+                    <div class="category-info">
+                        <h3>Beauty</h3>
+                        <p>120+ Products</p>
+                    </div>
+                </a>
+                <a href="#" class="category-card" data-category="gardening">
+                    <div class="category-img">
+                        <img src="https://i.imgur.com/AjGulv5.png" alt="Gardening">
+                    </div>
+                    <div class="category-info">
+                        <h3>Gardening</h3>
+                        <p>40+ Products</p>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="container">
+            <h2 class="section-title">Popular Products</h2>
+            <div class="product-grid" id="product-grid">
+                <!-- Products will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Bundle Packs Section -->
+    <section class="bundles" id="bundles">
+        <div class="container">
+            <h2 class="section-title">Bundle Packs</h2>
+            <div class="product-grid" id="bundle-grid">
+                <!-- Bundles will be loaded dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title text-center">What Our Customers Say</h2>
+            <div class="testimonial-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-img">
+                            <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="John Doe">
+                        </div>
+                        <div class="testimonial-user">
+                            <h4>John Doe</h4>
+                            <p>Regular Customer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"I've been using Chitkara Grocery Store for months now and I'm extremely satisfied with their service. The quality of products is always top-notch and delivery is super fast!"</p>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-img">
+                            <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Jane Smith">
+                        </div>
+                        <div class="testimonial-user">
+                            <h4>Jane Smith</h4>
+                            <p>New Customer</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star-half-alt"></i>
+                    </div>
+                    <p>"The variety of products available is amazing. I can find everything I need in one place. The customer service is also very responsive and helpful."</p>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-header">
+                        <div class="testimonial-img">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Sarah Johnson">
+                        </div>
+                        <div class="testimonial-user">
+                            <h4>Sarah Johnson</h4>
+                            <p>Premium Member</p>
+                        </div>
+                    </div>
+                    <div class="testimonial-rating">
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                        <i class="fas fa-star"></i>
+                    </div>
+                    <p>"The quality of fruits and vegetables is consistently fresh. I love the weekly deals and the convenience of home delivery. Highly recommended!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Download Section -->
+    <section class="app-download">
+        <div class="container">
+            <div class="app-container">
+                <div class="app-img">
+                    <img src="D:\appu\CGS\images\mobile-app.png" alt="Mobile App">
+                </div>
+                <div class="app-content">
+                    <h2>Download Our Mobile App</h2>
+                    <p>Get exclusive app-only deals and discounts. Order groceries anytime, anywhere with our easy-to-use app.</p>
+                    <div class="app-buttons">
+                        <a href="https://play.google.com/store/games?hl=en&pli=1" class="app-btn">
+                            <i class="fab fa-apple"></i>
+                            <div class="app-btn-text">
+                                <small>Download on the</small>
+                                <span>App Store</span>
+                            </div>
+                        </a>
+                        <a href="https://play.google.com/store/games?hl=en&pli=1" class="app-btn">
+                            <i class="fab fa-google-play"></i>
+                            <div class="app-btn-text">
+                                <small>Get it on</small>
+                                <span>Google Play</span>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3>Chitkara Grocery Store</h3>
+                    <p>Your one-stop shop for all grocery needs. We deliver fresh and high-quality products right to your doorstep.</p>
+                    <div class="footer-social">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="abo.html">About Us</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="contect.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Categories</h3>
+                    <ul>
+                        <li><a href="#">Fruits & Vegetables</a></li>
+                        <li><a href="#">Dairy & Eggs</a></li>
+                        <li><a href="#">Beverages</a></li>
+                        <li><a href="#">Snacks</a></li>
+                        <li><a href="#">Household</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>Contact Us</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> Chitkara University, Punjab</li>
+                        <li><i class="fas fa-phone"></i> +91 9876543210</li>
+                        <li><i class="fas fa-envelope"></i> info@chitkaragrocery.com</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Chitkara Grocery Store. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Login Modal -->
+    <div class="modal" id="login-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Login</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="login-email">Email</label>
+                        <input type="email" id="login-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="login-password">Password</label>
+                        <input type="password" id="login-password" class="form-control" required>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary">Login</button>
+                        <p>Don't have an account? <a href="#" id="show-register">Register</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Register Modal -->
+    <div class="modal" id="register-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Register</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="register-name">Full Name</label>
+                        <input type="text" id="register-name" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-email">Email</label>
+                        <input type="email" id="register-email" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-password">Password</label>
+                        <input type="password" id="register-password" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="register-confirm">Confirm Password</label>
+                        <input type="password" id="register-confirm" class="form-control" required>
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary">Register</button>
+                        <p>Already have an account? <a href="#" id="show-login">Login</a></p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+   
+    <!-- Profile Modal -->
+    <div class="modal" id="profile-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>My Account</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="profile-header">
+                    <div class="profile-avatar">
+                        <img src="https://randomuser.me/api/portraits/men/1.jpg" alt="User Avatar" id="profile-avatar">
+                    </div>
+                    <h3 class="profile-name" id="profile-name">Guest User</h3>
+                    <p class="profile-email" id="profile-email">guest@example.com</p>
+                </div>
+                
+                <ul class="profile-menu">
+                    <li><a href="#" class="active" id="profile-details-link"><i class="fas fa-user"></i> Profile Details</a></li>
+                    <li><a href="#" id="orders-link"><i class="fas fa-shopping-bag"></i> My Orders</a></li>
+                    <li><a href="#" id="addresses-link"><i class="fas fa-map-marker-alt"></i> Addresses</a></li>
+                    <li><a href="#" id="change-password-link"><i class="fas fa-lock"></i> Change Password</a></li>
+                    <li><a href="#" id="logout-link"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+                </ul>
+                
+                <div id="profile-details-section">
+                    <h4>Personal Information</h4>
+                    <form id="profile-form">
+                        <div class="form-group">
+                            <label for="profile-fullname">Full Name</label>
+                            <input type="text" id="profile-fullname" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-email-input">Email</label>
+                            <input type="email" id="profile-email-input" class="form-control" disabled>
+                        </div>
+                        <div class="form-group">
+                            <label for="profile-phone">Phone</label>
+                            <input type="tel" id="profile-phone" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">Save Changes</button>
+                    </form>
+                </div>
+                
+                <div id="orders-section" style="display: none;">
+                    <h4>Order History</h4>
+                    <p>No orders found</p>
+                </div>
+                
+                <div id="addresses-section" style="display: none;">
+                    <h4>Saved Addresses</h4>
+                    <button class="btn btn-primary" id="add-address-btn">Add New Address</button>
+                    <div id="addresses-list">
+                        <p>No addresses saved</p>
+                    </div>
+                </div>
+                
+                <div id="change-password-section" style="display: none;">
+                    <h4>Change Password</h4>
+                    <form id="change-password-form">
+                        <div class="form-group">
+                            <label for="current-password">Current Password</label>
+                            <input type="password" id="current-password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="new-password">New Password</label>
+                            <input type="password" id="new-password" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="confirm-new-password">Confirm New Password</label>
+                            <input type="password" id="confirm-new-password" class="form-control" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Update Password</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add Address Modal -->
+    <div class="modal" id="address-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 id="address-modal-title">Add New Address</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="address-form">
+                    <input type="hidden" id="address-id">
+                    <div class="form-group">
+                        <label for="address-type">Address Type</label>
+                        <select id="address-type" class="form-control" required>
+                            <option value="home">Home</option>
+                            <option value="work">Work</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="address-line1">Address Line 1</label>
+                        <input type="text" id="address-line1" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address-line2">Address Line 2</label>
+                        <input type="text" id="address-line2" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="address-city">City</label>
+                        <input type="text" id="address-city" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address-state">State</label>
+                        <input type="text" id="address-state" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address-pincode">Pincode</label>
+                        <input type="text" id="address-pincode" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="address-landmark">Landmark</label>
+                        <input type="text" id="address-landmark" class="form-control">
+                    </div>
+                    <div class="form-footer">
+                        <button type="submit" class="btn btn-primary">Save Address</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+     <!-- Cart Modal -->
+    <div class="modal" id="cart-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Cart (<span id="cart-modal-count">0</span>)</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="cart-items">
+                    <!-- Cart items will be loaded dynamically -->
+                    <div class="empty-cart">
+                        <p>Your cart is empty</p>
+                    </div>
+                </div>
+                <div class="cart-summary">
+                    <div class="cart-total">
+                        <span>Total:</span>
+                        <span id="cart-total">₹0</span>
+                    </div>
+                    <div class="cart-buttons">
+                        <button class="btn btn-outline" id="continue-shopping">Continue Shopping</button>
+                        <button class="btn btn-primary" id="checkout-btn">Checkout</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Wishlist Modal -->
+    <div class="modal" id="wishlist-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Your Wishlist (<span id="wishlist-modal-count">0</span>)</h3>
+                <span class="modal-close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <div class="cart-items" id="wishlist-items">
+                    <!-- Wishlist items will be loaded dynamically -->
+                    <div class="empty-wishlist">
+                        <p>Your wishlist is empty</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Fresh Apple",
+                category: "fruits",
+                image: "https://i.imgur.com/vUJ2JKU.png",
+                weight: "1 kg",
+                price: 100,
+                oldPrice: 120,
+                rating: 4.5,
+                badge: "Sale",
+                isWishlist: false
+            },
+            {
+                id: 2,
+                name: "Fresh Green Chili",
+                category: "vegetables",
+                image: "https://i.imgur.com/rFhSMZN.png",
+                weight: "250 gm",
+                price: 40,
+                oldPrice: null,
+                rating: 4.2,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 3,
+                name: "Fresh Onion",
+                category: "vegetables",
+                image: "https://i.imgur.com/sGLggWL.jpg",
+                weight: "1 kg",
+                price: 30,
+                oldPrice: null,
+                rating: 4.0,
+                badge: "New",
+                isWishlist: false
+            },
+            {
+                id: 4,
+                name: "Fresh Potato",
+                category: "vegetables",
+                image: "https://i.imgur.com/WFjH6ui.png",
+                weight: "1 kg",
+                price: 25,
+                oldPrice: null,
+                rating: 4.1,
+                badge: null,
+                isWishlist: false
+            }
+        ];
+
+        // Sample bundle data
+        const bundles = [
+            {
+                id: 101,
+                name: "Vegetable Combo Pack",
+                category: "vegetables",
+                image: "https://i.imgur.com/Zm8Xo2j.png",
+                weight: "Potato, Onion, Tomato, Chili",
+                price: 150,
+                oldPrice: 200,
+                rating: 4.7,
+                badge: "Best Value",
+                isWishlist: false
+            },
+            {
+                id: 102,
+                name: "Fruit Combo Pack",
+                category: "fruits",
+                image: "https://i.imgur.com/vMA9mRm.jpg",
+                weight: "Apple, Banana, Orange, Grapes",
+                price: 300,
+                oldPrice: 350,
+                rating: 4.5,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 103,
+                name: "Essential Grocery Pack",
+                category: "groceries",
+                image: "https://i.imgur.com/CeVqxe2.png",
+                weight: "Rice, Dal, Oil, Salt, Sugar",
+                price: 500,
+                oldPrice: 600,
+                rating: 4.8,
+                badge: "Popular",
+                isWishlist: false
+            }
+        ];
+
+        // DOM Elements
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+        const productGrid = document.getElementById('product-grid');
+        const bundleGrid = document.getElementById('bundle-grid');
+        const cartBtn = document.getElementById('cart-btn');
+        const wishlistBtn = document.getElementById('wishlist-btn');
+        const userBtn = document.getElementById('user-btn');
+        const cartCount = document.getElementById('cart-count');
+        const wishlistCount = document.getElementById('wishlist-count');
+        const cartModalCount = document.getElementById('cart-modal-count');
+        const wishlistModalCount = document.getElementById('wishlist-modal-count');
+        const cartItems = document.getElementById('cart-items');
+        const wishlistItems = document.getElementById('wishlist-items');
+        const cartTotal = document.getElementById('cart-total');
+        const continueShoppingBtn = document.getElementById('continue-shopping');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const loginModal = document.getElementById('login-modal');
+        const registerModal = document.getElementById('register-modal');
+        const cartModal = document.getElementById('cart-modal');
+        const wishlistModal = document.getElementById('wishlist-modal');
+        const profileModal = document.getElementById('profile-modal');
+        const addressModal = document.getElementById('address-modal');
+        const showRegister = document.getElementById('show-register');
+        const showLogin = document.getElementById('show-login');
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+        const profileForm = document.getElementById('profile-form');
+        const changePasswordForm = document.getElementById('change-password-form');
+        const addressForm = document.getElementById('address-form');
+        const addAddressBtn = document.getElementById('add-address-btn');
+        const profileDetailsLink = document.getElementById('profile-details-link');
+        const ordersLink = document.getElementById('orders-link');
+        const addressesLink = document.getElementById('addresses-link');
+        const changePasswordLink = document.getElementById('change-password-link');
+        const logoutLink = document.getElementById('logout-link');
+        const profileDetailsSection = document.getElementById('profile-details-section');
+        const ordersSection = document.getElementById('orders-section');
+        const addressesSection = document.getElementById('addresses-section');
+        const changePasswordSection = document.getElementById('change-password-section');
+        const profileName = document.getElementById('profile-name');
+        const profileEmail = document.getElementById('profile-email');
+        const profileFullname = document.getElementById('profile-fullname');
+        const profileEmailInput = document.getElementById('profile-email-input');
+        const profilePhone = document.getElementById('profile-phone');
+        const profileAvatar = document.getElementById('profile-avatar');
+        const addressModalTitle = document.getElementById('address-modal-title');
+        const addressId = document.getElementById('address-id');
+        const addressType = document.getElementById('address-type');
+        const addressLine1 = document.getElementById('address-line1');
+        const addressLine2 = document.getElementById('address-line2');
+        const addressCity = document.getElementById('address-city');
+        const addressState = document.getElementById('address-state');
+        const addressPincode = document.getElementById('address-pincode');
+        const addressLandmark = document.getElementById('address-landmark');
+        const addressesList = document.getElementById('addresses-list');
+
+        // State
+        let cart = [];
+        let wishlist = [];
+        let currentUser = null;
+        let addresses = [];
+        let editingAddressId = null;
+
+        // Initialize the app
+        function init() {
+            loadProducts();
+            loadBundles();
+            setupEventListeners();
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            checkAuthState();
+        }
+
+        // Load products
+        function loadProducts() {
+            productGrid.innerHTML = '';
+            products.forEach(product => {
+                const productElement = createProductElement(product);
+                productGrid.appendChild(productElement);
+            });
+        }
+
+        // Load bundles
+        function loadBundles() {
+            bundleGrid.innerHTML = '';
+            bundles.forEach(bundle => {
+                const bundleElement = createProductElement(bundle);
+                bundleGrid.appendChild(bundleElement);
+            });
+        }
+
+        // Create product element
+        function createProductElement(product) {
+            const productCard = document.createElement('div');
+            productCard.className = 'product-card';
+            productCard.dataset.id = product.id;
+            productCard.dataset.category = product.category;
+            
+            let badge = '';
+            if (product.badge) {
+                badge = `<span class="product-badge">${product.badge}</span>`;
+            }
+            
+            const isWishlisted = wishlist.some(item => item.id === product.id);
+            const wishlistClass = isWishlisted ? 'active' : '';
+            
+            let oldPrice = '';
+            if (product.oldPrice) {
+                oldPrice = `<span class="old-price">₹${product.oldPrice}</span>`;
+            }
+            
+            productCard.innerHTML = `
+                ${badge}
+                <div class="product-wishlist ${wishlistClass}"><i class="far fa-heart"></i></div>
+                <div class="product-img">
+                    <img src="${product.image}" alt="${product.name}">
+                </div>
+                <div class="product-info">
+                    <h3>${product.name}</h3>
+                    <div class="product-meta">${product.weight}</div>
+                    <div class="product-price">
+                        <div>
+                            ${oldPrice}
+                            <span class="price">₹${product.price}</span>
+                        </div>
+                        <div class="product-rating">
+                            ${createRatingStars(product.rating)} ${product.rating}
+                        </div>
+                    </div>
+                    <button class="product-btn">Add to Cart</button>
+                </div>
+            `;
+            
+            // Add event listeners
+            const wishlistBtn = productCard.querySelector('.product-wishlist');
+            wishlistBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                toggleWishlist(product);
+            });
+            
+            const addToCartBtn = productCard.querySelector('.product-btn');
+            addToCartBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                addToCart(product);
+            });
+            
+            productCard.addEventListener('click', () => {
+                // For future product detail page
+                console.log('View product:', product.name);
+            });
+            
+            return productCard;
+        }
+
+        // Create rating stars
+        function createRatingStars(rating) {
+            const fullStars = Math.floor(rating);
+            const hasHalfStar = rating % 1 >= 0.5;
+            let stars = '';
+            
+            for (let i = 0; i < fullStars; i++) {
+                stars += '<i class="fas fa-star"></i>';
+            }
+            
+            if (hasHalfStar) {
+                stars += '<i class="fas fa-star-half-alt"></i>';
+            }
+            
+            const emptyStars = 5 - Math.ceil(rating);
+            for (let i = 0; i < emptyStars; i++) {
+                stars += '<i class="far fa-star"></i>';
+            }
+            
+            return stars;
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Search
+            searchButton.addEventListener('click', handleSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleSearch();
+                }
+            });
+            
+            // Category filter
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = card.dataset.category;
+                    filterProducts(category);
+                });
+            });
+            
+            // Modal buttons
+            cartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(cartModal);
+            });
+            
+            wishlistBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(wishlistModal);
+            });
+            
+            userBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentUser) {
+                    openModal(profileModal);
+                } else {
+                    openModal(loginModal);
+                }
+            });
+            
+            // Continue shopping button
+            continueShoppingBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(cartModal);
+            });
+            
+            // Checkout button
+            checkoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentUser) {
+                    alert('Proceeding to checkout...');
+                    // In a real app, this would redirect to checkout page
+                } else {
+                    alert('Please login to proceed to checkout');
+                    closeModal(cartModal);
+                    openModal(loginModal);
+                }
+            });
+            
+            // Modal close buttons
+            document.querySelectorAll('.modal-close').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const modal = btn.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+            
+            // Modal backdrop click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+            
+            // Switch between login and register
+            showRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(loginModal);
+                openModal(registerModal);
+            });
+            
+            showLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(registerModal);
+                openModal(loginModal);
+            });
+            
+            // Form submissions
+            loginForm.addEventListener('submit', handleLogin);
+            registerForm.addEventListener('submit', handleRegister);
+            profileForm.addEventListener('submit', handleProfileUpdate);
+            changePasswordForm.addEventListener('submit', handleChangePassword);
+            addressForm.addEventListener('submit', handleAddressSubmit);
+            
+            // Profile navigation
+            profileDetailsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('details');
+            });
+            
+            ordersLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('orders');
+            });
+            
+            addressesLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('addresses');
+            });
+            
+            changePasswordLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('password');
+            });
+            
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleLogout();
+            });
+            
+            // Add address button
+            addAddressBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openAddAddressModal();
+            });
+        }
+
+        // Open modal
+        function openModal(modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            if (modal === cartModal) {
+                renderCart();
+            } else if (modal === wishlistModal) {
+                renderWishlist();
+            } else if (modal === profileModal && currentUser) {
+                loadProfileData();
+            }
+        }
+
+        // Close modal
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Handle search
+        function handleSearch() {
+            const query = searchInput.value.toLowerCase();
+            if (query.trim() === '') return;
+            
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query)
+            );
+            
+            const filteredBundles = bundles.filter(bundle => 
+                bundle.name.toLowerCase().includes(query)
+            );
+            
+            // Clear and render filtered products
+            productGrid.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const productElement = createProductElement(product);
+                productGrid.appendChild(productElement);
+            });
+            
+            // Clear and render filtered bundles
+            bundleGrid.innerHTML = '';
+            filteredBundles.forEach(bundle => {
+                const bundleElement = createProductElement(bundle);
+                bundleGrid.appendChild(bundleElement);
+            });
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Filter products by category
+        function filterProducts(category) {
+            const filteredProducts = products.filter(product => 
+                product.category === category
+            );
+            
+            // Clear and render filtered products
+            productGrid.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const productElement = createProductElement(product);
+                productGrid.appendChild(productElement);
+            });
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add to cart
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showToast(`${product.name} added to cart`);
+        }
+
+        // Toggle wishlist
+        function toggleWishlist(product) {
+            const index = wishlist.findIndex(item => item.id === product.id);
+            
+            if (index === -1) {
+                wishlist.push(product);
+                showToast(`${product.name} added to wishlist`);
+            } else {
+                wishlist.splice(index, 1);
+                showToast(`${product.name} removed from wishlist`);
+            }
+            
+            updateWishlist();
+            
+            // Update the wishlist icon on the product card
+            const productCard = document.querySelector(`.product-card[data-id="${product.id}"]`);
+            if (productCard) {
+                const wishlistIcon = productCard.querySelector('.product-wishlist');
+                wishlistIcon.classList.toggle('active');
+            }
+        }
+
+        // Update cart
+        function updateCart() {
+            // Update cart count
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+            cartModalCount.textContent = count;
+            
+            // Calculate total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `₹${total}`;
+            
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Update wishlist
+        function updateWishlist() {
+            // Update wishlist count
+            const count = wishlist.length;
+            wishlistCount.textContent = count;
+            wishlistModalCount.textContent = count;
+            
+            // Save to localStorage
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        // Render cart
+        function renderCart() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart"><p>Your cart is empty</p></div>';
+                return;
+            }
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                
+                let oldPrice = '';
+                if (item.oldPrice) {
+                    oldPrice = `<span class="old-price">₹${item.oldPrice}</span>`;
+                }
+                
+                cartItem.innerHTML = `
+                    <div class="cart-item-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">
+                            ${oldPrice}
+                            ₹${item.price}
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="decrease-quantity">-</button>
+                            <input type="number" value="${item.quantity}" min="1">
+                            <button class="increase-quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-item-remove">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                `;
+                
+                // Add event listeners
+                const decreaseBtn = cartItem.querySelector('.decrease-quantity');
+                const increaseBtn = cartItem.querySelector('.increase-quantity');
+                const quantityInput = cartItem.querySelector('input');
+                const removeBtn = cartItem.querySelector('.cart-item-remove');
+                
+                decreaseBtn.addEventListener('click', () => {
+                    if (item.quantity > 1) {
+                        item.quantity -= 1;
+                        quantityInput.value = item.quantity;
+                        updateCart();
+                    }
+                });
+                
+                increaseBtn.addEventListener('click', () => {
+                    item.quantity += 1;
+                    quantityInput.value = item.quantity;
+                    updateCart();
+                });
+                
+                quantityInput.addEventListener('change', (e) => {
+                    const newQuantity = parseInt(e.target.value);
+                    if (newQuantity >= 1) {
+                        item.quantity = newQuantity;
+                        updateCart();
+                    } else {
+                        e.target.value = item.quantity;
+                    }
+                });
+                
+                removeBtn.addEventListener('click', () => {
+                    cart = cart.filter(cartItem => cartItem.id !== item.id);
+                    renderCart();
+                    updateCart();
+                    showToast(`${item.name} removed from cart`);
+                });
+                
+                cartItems.appendChild(cartItem);
+            });
+        }
+
+        // Render wishlist
+        function renderWishlist() {
+            wishlistItems.innerHTML = '';
+            
+            if (wishlist.length === 0) {
+                wishlistItems.innerHTML = '<div class="empty-wishlist"><p>Your wishlist is empty</p></div>';
+                return;
+            }
+            
+            wishlist.forEach(item => {
+                const wishlistItem = document.createElement('div');
+                wishlistItem.className = 'cart-item';
+                
+                let oldPrice = '';
+                if (item.oldPrice) {
+                    oldPrice = `<span class="old-price">₹${item.oldPrice}</span>`;
+                }
+                
+                wishlistItem.innerHTML = `
+                    <div class="cart-item-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">
+                            ${oldPrice}
+                            ₹${item.price}
+                        </div>
+                        <button class="btn btn-outline add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="cart-item-remove">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                `;
+                
+                // Add event listeners
+                const addToCartBtn = wishlistItem.querySelector('.add-to-cart-btn');
+                const removeBtn = wishlistItem.querySelector('.cart-item-remove');
+                
+                addToCartBtn.addEventListener('click', () => {
+                    addToCart(item);
+                    showToast(`${item.name} added to cart`);
+                });
+                
+                removeBtn.addEventListener('click', () => {
+                    wishlist = wishlist.filter(wishlistItem => wishlistItem.id !== item.id);
+                    renderWishlist();
+                    updateWishlist();
+                    
+                    // Update the wishlist icon on the product card
+                    const productCard = document.querySelector(`.product-card[data-id="${item.id}"]`);
+                    if (productCard) {
+                        const wishlistIcon = productCard.querySelector('.product-wishlist');
+                        wishlistIcon.classList.remove('active');
+                    }
+                    
+                    showToast(`${item.name} removed from wishlist`);
+                });
+                
+                wishlistItems.appendChild(wishlistItem);
+            });
+        }
+
+        // Handle login
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Simple validation
+            if (!email || !password) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            // In a real app, this would be an API call
+            setTimeout(() => {
+                currentUser = {
+                    name: 'John Doe',
+                    email: email,
+                    phone: '9876543210',
+                    avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                closeModal(loginModal);
+                showToast('Login successful');
+                checkAuthState();
+                
+                // Load profile data
+                if (profileModal.style.display === 'block') {
+                    loadProfileData();
+                }
+            }, 1000);
+        }
+
+        // Handle register
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm').value;
+            
+            // Simple validation
+            if (!name || !email || !password || !confirmPassword) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showToast('Passwords do not match');
+                return;
+            }
+            
+            // In a real app, this would be an API call
+            setTimeout(() => {
+                currentUser = {
+                    name: name,
+                    email: email,
+                    phone: '',
+                    avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                closeModal(registerModal);
+                showToast('Registration successful');
+                checkAuthState();
+                
+                // Load profile data
+                if (profileModal.style.display === 'block') {
+                    loadProfileData();
+                }
+            }, 1000);
+        }
+
+        // Handle logout
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            closeModal(profileModal);
+            showToast('Logged out successfully');
+            checkAuthState();
+        }
+
+        // Check auth state
+        function checkAuthState() {
+            // Load from localStorage
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+            }
+            
+            // Load cart and wishlist from localStorage
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+            
+            const savedWishlist = localStorage.getItem('wishlist');
+            if (savedWishlist) {
+                wishlist = JSON.parse(savedWishlist);
+                updateWishlist();
+            }
+            
+            // Load addresses from localStorage
+            const savedAddresses = localStorage.getItem('addresses');
+            if (savedAddresses) {
+                addresses = JSON.parse(savedAddresses);
+            }
+        }
+
+        // Load profile data
+        function loadProfileData() {
+            if (!currentUser) return;
+            
+            profileName.textContent = currentUser.name;
+            profileEmail.textContent = currentUser.email;
+            profileFullname.value = currentUser.name;
+            profileEmailInput.value = currentUser.email;
+            profilePhone.value = currentUser.phone || '';
+            profileAvatar.src = currentUser.avatar;
+            
+            // Load addresses
+            renderAddresses();
+        }
+
+        // Show profile section
+        function showProfileSection(section) {
+            // Hide all sections
+            profileDetailsSection.style.display = 'none';
+            ordersSection.style.display = 'none';
+            addressesSection.style.display = 'none';
+            changePasswordSection.style.display = 'none';
+            
+            // Remove active class from all links
+            profileDetailsLink.classList.remove('active');
+            ordersLink.classList.remove('active');
+            addressesLink.classList.remove('active');
+            changePasswordLink.classList.remove('active');
+            
+            // Show selected section
+            switch (section) {
+                case 'details':
+                    profileDetailsSection.style.display = 'block';
+                    profileDetailsLink.classList.add('active');
+                    break;
+                case 'orders':
+                    ordersSection.style.display = 'block';
+                    ordersLink.classList.add('active');
+                    break;
+                case 'addresses':
+                    addressesSection.style.display = 'block';
+                    addressesLink.classList.add('active');
+                    break;
+                case 'password':
+                    changePasswordSection.style.display = 'block';
+                    changePasswordLink.classList.add('active');
+                    break;
+            }
+        }
+
+        // Handle profile update
+        function handleProfileUpdate(e) {
+            e.preventDefault();
+            
+            const name = profileFullname.value;
+            const phone = profilePhone.value;
+            
+            // Simple validation
+            if (!name) {
+                showToast('Please enter your name');
+                return;
+            }
+            
+            // Update user
+            currentUser.name = name;
+            currentUser.phone = phone;
+            
+            // Save to localStorage
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // Update profile display
+            profileName.textContent = name;
+            
+            showToast('Profile updated successfully');
+        }
+
+        // Handle change password
+        function handleChangePassword(e) {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmNewPassword = document.getElementById('confirm-new-password').value;
+            
+            // Simple validation
+            if (!currentPassword || !newPassword || !confirmNewPassword) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            if (newPassword !== confirmNewPassword) {
+                showToast('New passwords do not match');
+                return;
+            }
+            
+            // In a real app, this would verify current password with the server
+            showToast('Password changed successfully');
+            
+            // Clear form
+            e.target.reset();
+        }
+
+        // Open add address modal
+        function openAddAddressModal(address = null) {
+            if (address) {
+                // Edit mode
+                addressModalTitle.textContent = 'Edit Address';
+                addressId.value = address.id;
+                addressType.value = address.type;
+                addressLine1.value = address.line1;
+                addressLine2.value = address.line2 || '';
+                addressCity.value = address.city;
+                addressState.value = address.state;
+                addressPincode.value = address.pincode;
+                addressLandmark.value = address.landmark || '';
+                editingAddressId = address.id;
+            } else {
+                // Add mode
+                addressModalTitle.textContent = 'Add New Address';
+                addressForm.reset();
+                editingAddressId = null;
+            }
+            
+            openModal(addressModal);
+        }
+
+        // Handle address submit
+        function handleAddressSubmit(e) {
+            e.preventDefault();
+            
+            const address = {
+                id: editingAddressId || Date.now().toString(),
+                type: addressType.value,
+                line1: addressLine1.value,
+                line2: addressLine2.value,
+                city: addressCity.value,
+                state: addressState.value,
+                pincode: addressPincode.value,
+                landmark: addressLandmark.value
+            };
+            
+            // Simple validation
+            if (!address.line1 || !address.city || !address.state || !address.pincode) {
+                showToast('Please fill in all required fields');
+                return;
+            }
+            
+            if (editingAddressId) {
+                // Update existing address
+                const index = addresses.findIndex(addr => addr.id === editingAddressId);
+                if (index !== -1) {
+                    addresses[index] = address;
+                }
+            } else {
+                // Add new address
+                addresses.push(address);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('addresses', JSON.stringify(addresses));
+            
+            // Close modal and refresh addresses list
+            closeModal(addressModal);
+            renderAddresses();
+            
+            showToast(editingAddressId ? 'Address updated' : 'Address added');
+        }
+
+        // Render addresses
+        function renderAddresses() {
+            addressesList.innerHTML = '';
+            
+            if (addresses.length === 0) {
+                addressesList.innerHTML = '<p>No addresses saved</p>';
+                return;
+            }
+            
+            addresses.forEach(address => {
+                const addressElement = document.createElement('div');
+                addressElement.className = 'address-item';
+                addressElement.innerHTML = `
+                    <h4>${address.type.charAt(0).toUpperCase() + address.type.slice(1)} Address</h4>
+                    <p>${address.line1}</p>
+                    ${address.line2 ? `<p>${address.line2}</p>` : ''}
+                    <p>${address.city}, ${address.state} - ${address.pincode}</p>
+                    ${address.landmark ? `<p>Landmark: ${address.landmark}</p>` : ''}
+                    <div class="address-actions">
+                        <button class="btn btn-outline edit-address">Edit</button>
+                        <button class="btn btn-outline delete-address">Delete</button>
+                    </div>
+                `;
+                
+                // Add event listeners
+                const editBtn = addressElement.querySelector('.edit-address');
+                const deleteBtn = addressElement.querySelector('.delete-address');
+                
+                editBtn.addEventListener('click', () => {
+                    openAddAddressModal(address);
+                });
+                
+                deleteBtn.addEventListener('click', () => {
+                    if (confirm('Are you sure you want to delete this address?')) {
+                        addresses = addresses.filter(addr => addr.id !== address.id);
+                        localStorage.setItem('addresses', JSON.stringify(addresses));
+                        renderAddresses();
+                        showToast('Address deleted');
+                    }
+                });
+                
+                addressesList.appendChild(addressElement);
+            });
+        }
+
+        // Update countdown timer
+        function updateCountdown() {
+            // Set the date we're counting down to (3 days from now)
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 3);
+            
+            // Get today's date and time
+            const now = new Date().getTime();
+            
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Show toast message
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', init);
+
+        //new
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,1824 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chitkara Grocery Store - About Us</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== Base Styles ===== */
+        :root {
+            --primary: #27ae60;
+            --primary-dark: #219653;
+            --secondary: #2c3e50;
+            --light: #f9f9f9;
+            --dark: #333;
+            --gray: #777;
+            --shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--light);
+            color: var(--dark);
+            line-height: 1.6;
+            transition: var(--transition);
+        }
+
+        body.dark-mode {
+            background: #121212;
+            color: #f0f0f0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* ===== Navigation Bar ===== */
+        header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: var(--transition);
+        }
+
+        body.dark-mode header {
+            background: #1e1e1e;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 0;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--dark);
+        }
+
+        body.dark-mode .logo span {
+            color: #f0f0f0;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            font-weight: 500;
+            color: var(--dark);
+            transition: color 0.3s;
+            text-decoration: none;
+            position: relative;
+        }
+
+        body.dark-mode .nav-links a {
+            color: #f0f0f0;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-links a.active {
+            color: var(--primary);
+        }
+
+        .nav-links a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--primary);
+        }
+
+        .nav-icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-icons a {
+            margin-left: 20px;
+            color: var(--dark);
+            font-size: 1.2rem;
+            position: relative;
+            text-decoration: none;
+        }
+
+        body.dark-mode .nav-icons a {
+            color: #f0f0f0;
+        }
+
+        .badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            width: 18px;
+            height: 18px;
+            font-size: 0.7rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--dark);
+            background: none;
+            border: none;
+        }
+
+        body.dark-mode .mobile-menu-btn {
+            color: #f0f0f0;
+        }
+
+        /* Rest of your CSS remains the same... */
+        /* ===== Header & Theme Toggle ===== */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        /* ===== About Section ===== */
+        .about-section {
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            margin-bottom: 60px;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 15px auto;
+        }
+
+        .about-container {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .about-img {
+            flex: 1 1 45%;
+            min-width: 300px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .about-img:hover {
+            transform: scale(1.02);
+        }
+
+        .about-img img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-content {
+            flex: 1 1 45%;
+            min-width: 300px;
+        }
+
+        .about-subtitle {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-subtitle::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 3px;
+            background: var(--primary);
+            margin-top: 8px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: 25px;
+        }
+
+        .dark-mode .about-text {
+            color: #ccc;
+        }
+
+        /* ===== Futuristic Features ===== */
+        .future-features {
+            margin: 60px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+        }
+
+        .future-card {
+            background: white;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .dark-mode .future-card {
+            background: #1e1e1e;
+            border: 1px solid #333;
+        }
+
+        .future-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .future-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .future-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+
+        .dark-mode .future-title {
+            color: #f0f0f0;
+        }
+
+        .future-text {
+            font-size: 0.95rem;
+            color: var(--gray);
+        }
+
+        .dark-mode .future-text {
+            color: #aaa;
+        }
+
+        /* ===== Team Section ===== */
+        .team-section {
+            margin-top: 80px;
+        }
+
+        .team-title {
+            font-size: 2.2rem;
+            margin-bottom: 50px;
+            color: var(--secondary);
+        }
+
+        .dark-mode .team-title {
+            color: #f0f0f0;
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .team-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .dark-mode .team-card {
+            background: #1e1e1e;
+        }
+
+        .team-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .member-img {
+            width: 100%;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .team-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .team-card:hover .team-photo {
+            transform: scale(1.1);
+        }
+
+        .member-info {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .member-name {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+            color: var(--secondary);
+        }
+
+        .dark-mode .member-name {
+            color: #f0f0f0;
+        }
+
+        .member-position {
+            font-size: 0.95rem;
+            color: var(--primary);
+            font-weight: 500;
+        }
+
+        /* ===== Footer ===== */
+        footer {
+            background: #2c3e50;
+            color: white;
+            padding: 60px 0 20px;
+            margin-top: 80px;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: white;
+        }
+
+        .footer-about {
+            max-width: 300px;
+        }
+
+        .footer-links h3, .footer-contact h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .footer-links h3::after, .footer-contact h3::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 3px;
+            background: var(--primary);
+            margin-top: 8px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: #ccc;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: white;
+            padding-left: 5px;
+        }
+
+        .footer-contact p {
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: #ccc;
+        }
+
+        .footer-contact i {
+            color: var(--primary);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            background: rgba(255, 255, 255, 0.1);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* ===== AI Chatbot Button ===== */
+        .chatbot-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--primary);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            transition: var(--transition);
+            border: none;
+        }
+
+        .chatbot-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.1);
+        }
+
+        /* ===== Animations ===== */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease forwards;
+        }
+
+        .delay-1 { animation-delay: 0.2s; }
+        .delay-2 { animation-delay: 0.4s; }
+        .delay-3 { animation-delay: 0.6s; }
+
+        /* ===== Responsive Design ===== */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
+                flex-direction: column;
+                align-items: center;
+                padding: 40px 0;
+                transition: all 0.5s;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+            }
+
+            body.dark-mode .nav-links {
+                background: #1e1e1e;
+            }
+
+            .nav-links.active {
+                left: 0;
+            }
+
+            .nav-links li {
+                margin: 15px 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .about-container {
+                flex-direction: column;
+            }
+
+            .section-title {
+                font-size: 2.2rem;
+            }
+
+            .team-title {
+                font-size: 1.8rem;
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+   <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo"><span>C</span>GS</a>
+                
+                <ul class="nav-links">
+                    <li><a href="index.html" class="active">Home</a></li>
+                    <li><a href="cate.html">Categories</a></li>
+                    <li><a href="product.html">Products</a></li>
+                    <li><a href="contect.html">Contact</a></li>
+                    <li><a href="abo.html">About</a></li>
+                </ul>
+                
+                <div class="nav-icons">
+                    <a href="#" id="search-btn"><i class="fas fa-search"></i></a>
+                    <a href="#" id="wishlist-btn"><i class="far fa-heart"></i><span class="badge" id="wishlist-count">0</span></a>
+                    <a href="#" id="cart-btn"><i class="fas fa-shopping-cart"></i><span class="badge" id="cart-count">0</span></a>
+                    <a href="#" id="user-btn"><i class="far fa-user"></i></a>
+                </div>
+                
+                <div class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+      <!-- Mobile Menu Button -->
+                <button class="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Rest of your HTML content remains the same... -->
+    <!-- Dark Mode Toggle -->
+    <button class="theme-toggle" id="themeToggle">
+        <i class="fas fa-moon"></i>
+    </button>
+
+    <!-- About Us Section -->
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title text-center fade-in">About Chitkara Grocery Store</h2>
+            
+            <div class="about-container">
+                <div class="about-img fade-in">
+                    <img src="https://images.unsplash.com/photo-1606787366850-de6330128bfc?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Our Store">
+                </div>
+                
+                <div class="about-content">
+                    <div class="about-story fade-in delay-1">
+                        <h3 class="about-subtitle">Our Story</h3>
+                        <p class="about-text">Founded in 2023, Chitkara Grocery Store began as a small campus initiative to provide fresh, affordable groceries to students and faculty at Chitkara University. Today, we are a tech-driven grocery service combining AI-powered inventory management, drone deliveries, and farm-to-table freshness.</p>
+                    </div>
+                    
+                    <div class="about-mission fade-in delay-2">
+                        <h3 class="about-subtitle">Our Mission</h3>
+                        <p class="about-text">We are revolutionizing grocery shopping with AI-driven recommendations, zero-waste packaging, and hyper-local sourcing. Our vision is to make sustainable, high-quality groceries accessible to everyone while reducing food waste by 50% by 2025.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Futuristic Features -->
+            <div class="future-features">
+                <h3 class="about-subtitle text-center fade-in">Our Future-Ready Features</h3>
+                <div class="feature-grid">
+                    <div class="future-card fade-in delay-1">
+                        <div class="future-icon">
+                            <i class="fas fa-robot"></i>
+                        </div>
+                        <h4 class="future-title">AI Shopping Assistant</h4>
+                        <p class="future-text">Get personalized recommendations and auto-replenishment for your groceries.</p>
+                    </div>
+                    
+                    <div class="future-card fade-in delay-2">
+                        <div class="future-icon">
+                            <i class="fas fa-vr-cardboard"></i>
+                        </div>
+                        <h4 class="future-title">AR Product Preview</h4>
+                        <p class="future-text">See how products look in your kitchen using augmented reality.</p>
+                    </div>
+                    
+                    <div class="future-card fade-in delay-3">
+                        <div class="future-icon">
+                            <i class="fas fa-microphone"></i>
+                        </div>
+                        <h4 class="future-title">Voice-Activated Orders</h4>
+                        <p class="future-text">"Hey Chitkara, add milk to my cart!" – seamless voice shopping.</p>
+                    </div>
+                    
+                    <div class="future-card fade-in delay-1">
+                        <div class="future-icon">
+                            <i class="fas fa-drone"></i>
+                        </div>
+                        <h4 class="future-title">Drone Delivery Tracking</h4>
+                        <p class="future-text">Watch your order arrive in real-time via drone delivery.</p>
+                    </div>
+                    
+                    <div class="future-card fade-in delay-2">
+                        <div class="future-icon">
+                            <i class="fas fa-link"></i>
+                        </div>
+                        <h4 class="future-title">Blockchain Transparency</h4>
+                        <p class="future-text">Track your food's journey from farm to your table.</p>
+                    </div>
+                    
+                    <div class="future-card fade-in delay-3">
+                        <div class="future-icon">
+                            <i class="fas fa-recycle"></i>
+                        </div>
+                        <h4 class="future-title">Zero-Waste Packaging</h4>
+                        <p class="future-text">100% compostable and reusable packaging solutions.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Team Section -->
+            <div class="team-section">
+                <h3 class="team-title text-center fade-in">Meet Our Innovators</h3>
+                <div class="team-grid" id="teamContainer">
+                    <!-- Team loaded via JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-container">
+                <div class="footer-about">
+                    <div class="footer-logo">Chitkara Grocery</div>
+                    <p>India's first AI-powered, sustainable campus grocery store. Fresh, fast, and future-ready.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="abo.html">About Us</a></li>
+                        <li><a href="product.html">Products</a></li>
+                        <li><a href="contect.html">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#">AI Shopping</a></li>
+                        <li><a href="#">Drone Delivery</a></li>
+                        <li><a href="#">Bulk Orders</a></li>
+                        <li><a href="#">Farm Connect</a></li>
+                        <li><a href="#">Corporate Plans</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-contact">
+                    <h3>Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> Chitkara University, Punjab, India</p>
+                    <p><i class="fas fa-phone"></i> +91 9876543210</p>
+                    <p><i class="fas fa-envelope"></i> hello@chitkaragrocery.com</p>
+                    <p><i class="fas fa-clock"></i> 7AM - 11PM, 7 Days a Week</p>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>&copy; 2023 Chitkara Grocery Store. All Rights Reserved. | <a href="#" style="color: var(--primary);">Privacy Policy</a> | <a href="#" style="color: var(--primary);">Terms of Service</a></p>
+            </div>
+        </div>
+    </footer>
+
+
+    <!-- AI Chatbot Button -->
+    <div class="chatbot-btn" id="chatbotBtn">
+        <i class="fas fa-robot"></i>
+    </div>
+
+    <script>
+        // ===== Mobile Menu Toggle =====
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+
+        // ===== Dark Mode Toggle =====
+        const themeToggle = document.getElementById('themeToggle');
+        themeToggle.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            if (document.body.classList.contains('dark-mode')) {
+                themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+
+        // ===== Dynamic Team Loading =====
+        const teamData = [
+            {
+                name: "Dr. Neha Sharma",
+                position: "CEO & AI Specialist",
+                photo: "https://randomuser.me/api/portraits/women/65.jpg",
+                bio: "PhD in AI-driven supply chains"
+            },
+            {
+                name: "Rahul Verma",
+                position: "CTO & Robotics Lead",
+                photo: "https://randomuser.me/api/portraits/men/42.jpg",
+                bio: "Expert in autonomous delivery systems"
+            },
+            {
+                name: "Priya Patel",
+                position: "Sustainability Head",
+                photo: "https://randomuser.me/api/portraits/women/33.jpg",
+                bio: "Zero-waste packaging innovator"
+            },
+            {
+                name: "Amit Singh",
+                position: "Farm Network Director",
+                photo: "https://randomuser.me/api/portraits/men/75.jpg",
+                bio: "Connects 50+ local farms to our supply chain"
+            }
+        ];
+
+        function loadTeam() {
+            const teamContainer = document.getElementById('teamContainer');
+            teamContainer.innerHTML = teamData.map(member => `
+                <div class="team-card fade-in">
+                    <div class="member-img">
+                        <img src="${member.photo}" alt="${member.name}" class="team-photo">
+                    </div>
+                    <div class="member-info">
+                        <h4 class="member-name">${member.name}</h4>
+                        <p class="member-position">${member.position}</p>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== AI Chatbot Simulation =====
+        const chatbotBtn = document.getElementById('chatbotBtn');
+        chatbotBtn.addEventListener('click', () => {
+            alert("👋 Hi! I'm Chitkara Grocery AI. How can I help you today?\n\nTry saying: 'Show me fresh fruits' or 'Track my order'");
+        });
+
+        // ===== Initialize Page =====
+        document.addEventListener('DOMContentLoaded', () => {
+            loadTeam();
+            
+            // Highlight active link based on current page
+            const currentPage = window.location.pathname.split('/').pop() || 'index.html';
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                const linkPage = link.getAttribute('href').split('/').pop();
+                if (linkPage === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+
+            // Animate elements on scroll
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.fade-in').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+         // Sample product data
+        const products = [
+            {
+                id: 1,
+                name: "Fresh Apple",
+                category: "fruits",
+                image: "https://i.imgur.com/vUJ2JKU.png",
+                weight: "1 kg",
+                price: 100,
+                oldPrice: 120,
+                rating: 4.5,
+                badge: "Sale",
+                isWishlist: false
+            },
+            {
+                id: 2,
+                name: "Fresh Green Chili",
+                category: "vegetables",
+                image: "https://i.imgur.com/rFhSMZN.png",
+                weight: "250 gm",
+                price: 40,
+                oldPrice: null,
+                rating: 4.2,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 3,
+                name: "Fresh Onion",
+                category: "vegetables",
+                image: "https://i.imgur.com/sGLggWL.jpg",
+                weight: "1 kg",
+                price: 30,
+                oldPrice: null,
+                rating: 4.0,
+                badge: "New",
+                isWishlist: false
+            },
+            {
+                id: 4,
+                name: "Fresh Potato",
+                category: "vegetables",
+                image: "https://i.imgur.com/WFjH6ui.png",
+                weight: "1 kg",
+                price: 25,
+                oldPrice: null,
+                rating: 4.1,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 5,
+                name: "Banana",
+                category: "fruits",
+                image: "https://i.imgur.com/Jc4kybF.png",
+                weight: "1 dozen",
+                price: 50,
+                oldPrice: 60,
+                rating: 4.3,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 6,
+                name: "Tomato",
+                category: "vegetables",
+                image: "https://i.imgur.com/5VJQvQ0.png",
+                weight: "1 kg",
+                price: 40,
+                oldPrice: 50,
+                rating: 4.0,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 7,
+                name: "Carrot",
+                category: "vegetables",
+                image: "https://i.imgur.com/8XJQvQ0.png",
+                weight: "500 gm",
+                price: 35,
+                oldPrice: null,
+                rating: 4.2,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 8,
+                name: "Grapes",
+                category: "fruits",
+                image: "https://i.imgur.com/9XJQvQ0.png",
+                weight: "500 gm",
+                price: 80,
+                oldPrice: 100,
+                rating: 4.4,
+                badge: "Sale",
+                isWishlist: false
+            }
+        ];
+
+        // Sample bundle data
+        const bundles = [
+            {
+                id: 101,
+                name: "Vegetable Combo Pack",
+                category: "vegetables",
+                image: "https://i.imgur.com/Zm8Xo2j.png",
+                weight: "Potato, Onion, Tomato, Chili",
+                price: 150,
+                oldPrice: 200,
+                rating: 4.7,
+                badge: "Best Value",
+                isWishlist: false
+            },
+            {
+                id: 102,
+                name: "Fruit Combo Pack",
+                category: "fruits",
+                image: "https://i.imgur.com/vMA9mRm.jpg",
+                weight: "Apple, Banana, Orange, Grapes",
+                price: 300,
+                oldPrice: 350,
+                rating: 4.5,
+                badge: null,
+                isWishlist: false
+            },
+            {
+                id: 103,
+                name: "Essential Grocery Pack",
+                category: "groceries",
+                image: "https://i.imgur.com/CeVqxe2.png",
+                weight: "Rice, Dal, Oil, Salt, Sugar",
+                price: 500,
+                oldPrice: 600,
+                rating: 4.8,
+                badge: "Popular",
+                isWishlist: false
+            }
+        ];
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu toggle
+            mobileMenuBtn.addEventListener('click', () => {
+                navLinks.classList.toggle('active');
+            });
+            
+            // Nav links
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Search
+            searchButton.addEventListener('click', handleSearch);
+            searchInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    handleSearch();
+                }
+            });
+            
+            // Category filter
+            document.querySelectorAll('.category-card').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const category = card.dataset.category;
+                    filterProducts(category);
+                });
+            });
+            
+            // Modal buttons
+            cartBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(cartModal);
+            });
+            
+            wishlistBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openModal(wishlistModal);
+            });
+            
+            userBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentUser) {
+                    openModal(profileModal);
+                } else {
+                    openModal(loginModal);
+                }
+            });
+            
+            // Continue shopping button
+            continueShoppingBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(cartModal);
+            });
+            
+            // Checkout button
+            checkoutBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                if (currentUser) {
+                    alert('Proceeding to checkout...');
+                    // In a real app, this would redirect to checkout page
+                } else {
+                    alert('Please login to proceed to checkout');
+                    closeModal(cartModal);
+                    openModal(loginModal);
+                }
+            });
+            
+            // Modal close buttons
+            document.querySelectorAll('.modal-close').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const modal = btn.closest('.modal');
+                    closeModal(modal);
+                });
+            });
+            
+            // Modal backdrop click
+            document.querySelectorAll('.modal').forEach(modal => {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeModal(modal);
+                    }
+                });
+            });
+            
+            // Switch between login and register
+            showRegister.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(loginModal);
+                openModal(registerModal);
+            });
+            
+            showLogin.addEventListener('click', (e) => {
+                e.preventDefault();
+                closeModal(registerModal);
+                openModal(loginModal);
+            });
+            
+            // Form submissions
+            loginForm.addEventListener('submit', handleLogin);
+            registerForm.addEventListener('submit', handleRegister);
+            profileForm.addEventListener('submit', handleProfileUpdate);
+            changePasswordForm.addEventListener('submit', handleChangePassword);
+            addressForm.addEventListener('submit', handleAddressSubmit);
+            
+            // Profile navigation
+            profileDetailsLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('details');
+            });
+            
+            ordersLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('orders');
+            });
+            
+            addressesLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('addresses');
+            });
+            
+            changePasswordLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                showProfileSection('password');
+            });
+            
+            logoutLink.addEventListener('click', (e) => {
+                e.preventDefault();
+                handleLogout();
+            });
+            
+            // Add address button
+            addAddressBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                openAddAddressModal();
+            });
+        }
+
+        // Open modal
+        function openModal(modal) {
+            modal.style.display = 'block';
+            document.body.style.overflow = 'hidden';
+            
+            if (modal === cartModal) {
+                renderCart();
+            } else if (modal === wishlistModal) {
+                renderWishlist();
+            } else if (modal === profileModal && currentUser) {
+                loadProfileData();
+            }
+        }
+
+        // Close modal
+        function closeModal(modal) {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        // Handle search
+        function handleSearch() {
+            const query = searchInput.value.toLowerCase();
+            if (query.trim() === '') return;
+            
+            const filteredProducts = products.filter(product => 
+                product.name.toLowerCase().includes(query)
+            );
+            
+            const filteredBundles = bundles.filter(bundle => 
+                bundle.name.toLowerCase().includes(query)
+            );
+            
+            // Clear and render filtered products
+            productGrid.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const productElement = createProductElement(product);
+                productGrid.appendChild(productElement);
+            });
+            
+            // Clear and render filtered bundles
+            bundleGrid.innerHTML = '';
+            filteredBundles.forEach(bundle => {
+                const bundleElement = createProductElement(bundle);
+                bundleGrid.appendChild(bundleElement);
+            });
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Filter products by category
+        function filterProducts(category) {
+            const filteredProducts = products.filter(product => 
+                product.category === category
+            );
+            
+            // Clear and render filtered products
+            productGrid.innerHTML = '';
+            filteredProducts.forEach(product => {
+                const productElement = createProductElement(product);
+                productGrid.appendChild(productElement);
+            });
+            
+            // Scroll to products section
+            document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Add to cart
+        function addToCart(product) {
+            const existingItem = cart.find(item => item.id === product.id);
+            
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({
+                    ...product,
+                    quantity: 1
+                });
+            }
+            
+            updateCart();
+            showToast(`${product.name} added to cart`);
+        }
+
+        // Toggle wishlist
+        function toggleWishlist(product) {
+            const index = wishlist.findIndex(item => item.id === product.id);
+            
+            if (index === -1) {
+                wishlist.push(product);
+                showToast(`${product.name} added to wishlist`);
+            } else {
+                wishlist.splice(index, 1);
+                showToast(`${product.name} removed from wishlist`);
+            }
+            
+            updateWishlist();
+            
+            // Update the wishlist icon on the product card
+            const productCard = document.querySelector(`.product-card[data-id="${product.id}"]`);
+            if (productCard) {
+                const wishlistIcon = productCard.querySelector('.product-wishlist');
+                wishlistIcon.classList.toggle('active');
+            }
+        }
+
+        // Update cart
+        function updateCart() {
+            // Update cart count
+            const count = cart.reduce((total, item) => total + item.quantity, 0);
+            cartCount.textContent = count;
+            cartModalCount.textContent = count;
+            
+            // Calculate total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `₹${total}`;
+            
+            // Save to localStorage
+            localStorage.setItem('cart', JSON.stringify(cart));
+        }
+
+        // Update wishlist
+        function updateWishlist() {
+            // Update wishlist count
+            const count = wishlist.length;
+            wishlistCount.textContent = count;
+            wishlistModalCount.textContent = count;
+            
+            // Save to localStorage
+            localStorage.setItem('wishlist', JSON.stringify(wishlist));
+        }
+
+        // Render cart
+        function renderCart() {
+            cartItems.innerHTML = '';
+            
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<div class="empty-cart"><p>Your cart is empty</p></div>';
+                return;
+            }
+            
+            cart.forEach(item => {
+                const cartItem = document.createElement('div');
+                cartItem.className = 'cart-item';
+                
+                let oldPrice = '';
+                if (item.oldPrice) {
+                    oldPrice = `<span class="old-price">₹${item.oldPrice}</span>`;
+                }
+                
+                cartItem.innerHTML = `
+                    <div class="cart-item-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">
+                            ${oldPrice}
+                            ₹${item.price}
+                        </div>
+                        <div class="cart-item-quantity">
+                            <button class="decrease-quantity">-</button>
+                            <input type="number" value="${item.quantity}" min="1">
+                            <button class="increase-quantity">+</button>
+                        </div>
+                    </div>
+                    <div class="cart-item-remove">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                `;
+                
+                // Add event listeners
+                const decreaseBtn = cartItem.querySelector('.decrease-quantity');
+                const increaseBtn = cartItem.querySelector('.increase-quantity');
+                const quantityInput = cartItem.querySelector('input');
+                const removeBtn = cartItem.querySelector('.cart-item-remove');
+                
+                decreaseBtn.addEventListener('click', () => {
+                    if (item.quantity > 1) {
+                        item.quantity -= 1;
+                        quantityInput.value = item.quantity;
+                        updateCart();
+                    }
+                });
+                
+                increaseBtn.addEventListener('click', () => {
+                    item.quantity += 1;
+                    quantityInput.value = item.quantity;
+                    updateCart();
+                });
+                
+                quantityInput.addEventListener('change', (e) => {
+                    const newQuantity = parseInt(e.target.value);
+                    if (newQuantity >= 1) {
+                        item.quantity = newQuantity;
+                        updateCart();
+                    } else {
+                        e.target.value = item.quantity;
+                    }
+                });
+                
+                removeBtn.addEventListener('click', () => {
+                    cart = cart.filter(cartItem => cartItem.id !== item.id);
+                    renderCart();
+                    updateCart();
+                    showToast(`${item.name} removed from cart`);
+                });
+                
+                cartItems.appendChild(cartItem);
+            });
+        }
+
+        // Render wishlist
+        function renderWishlist() {
+            wishlistItems.innerHTML = '';
+            
+            if (wishlist.length === 0) {
+                wishlistItems.innerHTML = '<div class="empty-wishlist"><p>Your wishlist is empty</p></div>';
+                return;
+            }
+            
+            wishlist.forEach(item => {
+                const wishlistItem = document.createElement('div');
+                wishlistItem.className = 'cart-item';
+                
+                let oldPrice = '';
+                if (item.oldPrice) {
+                    oldPrice = `<span class="old-price">₹${item.oldPrice}</span>`;
+                }
+                
+                wishlistItem.innerHTML = `
+                    <div class="cart-item-img">
+                        <img src="${item.image}" alt="${item.name}">
+                    </div>
+                    <div class="cart-item-info">
+                        <div class="cart-item-title">${item.name}</div>
+                        <div class="cart-item-price">
+                            ${oldPrice}
+                            ₹${item.price}
+                        </div>
+                        <button class="btn btn-outline add-to-cart-btn">Add to Cart</button>
+                    </div>
+                    <div class="cart-item-remove">
+                        <i class="fas fa-trash"></i>
+                    </div>
+                `;
+                
+                // Add event listeners
+                const addToCartBtn = wishlistItem.querySelector('.add-to-cart-btn');
+                const removeBtn = wishlistItem.querySelector('.cart-item-remove');
+                
+                addToCartBtn.addEventListener('click', () => {
+                    addToCart(item);
+                    showToast(`${item.name} added to cart`);
+                });
+                
+                removeBtn.addEventListener('click', () => {
+                    wishlist = wishlist.filter(wishlistItem => wishlistItem.id !== item.id);
+                    renderWishlist();
+                    updateWishlist();
+                    
+                    // Update the wishlist icon on the product card
+                    const productCard = document.querySelector(`.product-card[data-id="${item.id}"]`);
+                    if (productCard) {
+                        const wishlistIcon = productCard.querySelector('.product-wishlist');
+                        wishlistIcon.classList.remove('active');
+                    }
+                    
+                    showToast(`${item.name} removed from wishlist`);
+                });
+                
+                wishlistItems.appendChild(wishlistItem);
+            });
+        }
+
+        // Handle login
+        function handleLogin(e) {
+            e.preventDefault();
+            const email = document.getElementById('login-email').value;
+            const password = document.getElementById('login-password').value;
+            
+            // Simple validation
+            if (!email || !password) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            // In a real app, this would be an API call
+            setTimeout(() => {
+                currentUser = {
+                    name: 'John Doe',
+                    email: email,
+                    phone: '9876543210',
+                    avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                closeModal(loginModal);
+                showToast('Login successful');
+                checkAuthState();
+                
+                // Load profile data
+                if (profileModal.style.display === 'block') {
+                    loadProfileData();
+                }
+            }, 1000);
+        }
+
+        // Handle register
+        function handleRegister(e) {
+            e.preventDefault();
+            const name = document.getElementById('register-name').value;
+            const email = document.getElementById('register-email').value;
+            const password = document.getElementById('register-password').value;
+            const confirmPassword = document.getElementById('register-confirm').value;
+            
+            // Simple validation
+            if (!name || !email || !password || !confirmPassword) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            if (password !== confirmPassword) {
+                showToast('Passwords do not match');
+                return;
+            }
+            
+            // In a real app, this would be an API call
+            setTimeout(() => {
+                currentUser = {
+                    name: name,
+                    email: email,
+                    phone: '',
+                    avatar: 'https://randomuser.me/api/portraits/men/1.jpg'
+                };
+                
+                // Save to localStorage
+                localStorage.setItem('currentUser', JSON.stringify(currentUser));
+                
+                closeModal(registerModal);
+                showToast('Registration successful');
+                checkAuthState();
+                
+                // Load profile data
+                if (profileModal.style.display === 'block') {
+                    loadProfileData();
+                }
+            }, 1000);
+        }
+
+        // Handle logout
+        function handleLogout() {
+            currentUser = null;
+            localStorage.removeItem('currentUser');
+            closeModal(profileModal);
+            showToast('Logged out successfully');
+            checkAuthState();
+        }
+
+        // Check auth state
+        function checkAuthState() {
+            // Load from localStorage
+            const savedUser = localStorage.getItem('currentUser');
+            if (savedUser) {
+                currentUser = JSON.parse(savedUser);
+            }
+            
+            // Load cart and wishlist from localStorage
+            const savedCart = localStorage.getItem('cart');
+            if (savedCart) {
+                cart = JSON.parse(savedCart);
+                updateCart();
+            }
+            
+            const savedWishlist = localStorage.getItem('wishlist');
+            if (savedWishlist) {
+                wishlist = JSON.parse(savedWishlist);
+                updateWishlist();
+            }
+            
+            // Load addresses from localStorage
+            const savedAddresses = localStorage.getItem('addresses');
+            if (savedAddresses) {
+                addresses = JSON.parse(savedAddresses);
+            }
+        }
+
+        // Load profile data
+        function loadProfileData() {
+            if (!currentUser) return;
+            
+            profileName.textContent = currentUser.name;
+            profileEmail.textContent = currentUser.email;
+            profileFullname.value = currentUser.name;
+            profileEmailInput.value = currentUser.email;
+            profilePhone.value = currentUser.phone || '';
+            profileAvatar.src = currentUser.avatar;
+            
+            // Load addresses
+            renderAddresses();
+        }
+
+        // Show profile section
+        function showProfileSection(section) {
+            // Hide all sections
+            profileDetailsSection.style.display = 'none';
+            ordersSection.style.display = 'none';
+            addressesSection.style.display = 'none';
+            changePasswordSection.style.display = 'none';
+            
+            // Remove active class from all links
+            profileDetailsLink.classList.remove('active');
+            ordersLink.classList.remove('active');
+            addressesLink.classList.remove('active');
+            changePasswordLink.classList.remove('active');
+            
+            // Show selected section
+            switch (section) {
+                case 'details':
+                    profileDetailsSection.style.display = 'block';
+                    profileDetailsLink.classList.add('active');
+                    break;
+                case 'orders':
+                    ordersSection.style.display = 'block';
+                    ordersLink.classList.add('active');
+                    break;
+                case 'addresses':
+                    addressesSection.style.display = 'block';
+                    addressesLink.classList.add('active');
+                    break;
+                case 'password':
+                    changePasswordSection.style.display = 'block';
+                    changePasswordLink.classList.add('active');
+                    break;
+            }
+        }
+
+        // Handle profile update
+        function handleProfileUpdate(e) {
+            e.preventDefault();
+            
+            const name = profileFullname.value;
+            const phone = profilePhone.value;
+            
+            // Simple validation
+            if (!name) {
+                showToast('Please enter your name');
+                return;
+            }
+            
+            // Update user
+            currentUser.name = name;
+            currentUser.phone = phone;
+            
+            // Save to localStorage
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
+            
+            // Update profile display
+            profileName.textContent = name;
+            
+            showToast('Profile updated successfully');
+        }
+
+        // Handle change password
+        function handleChangePassword(e) {
+            e.preventDefault();
+            
+            const currentPassword = document.getElementById('current-password').value;
+            const newPassword = document.getElementById('new-password').value;
+            const confirmNewPassword = document.getElementById('confirm-new-password').value;
+            
+            // Simple validation
+            if (!currentPassword || !newPassword || !confirmNewPassword) {
+                showToast('Please fill in all fields');
+                return;
+            }
+            
+            if (newPassword !== confirmNewPassword) {
+                showToast('New passwords do not match');
+                return;
+            }
+            
+            // In a real app, this would verify current password with the server
+            showToast('Password changed successfully');
+            
+            // Clear form
+            e.target.reset();
+        }
+
+        // Open add address modal
+        function openAddAddressModal(address = null) {
+            if (address) {
+                // Edit mode
+                addressModalTitle.textContent = 'Edit Address';
+                addressId.value = address.id;
+                addressType.value = address.type;
+                addressLine1.value = address.line1;
+                addressLine2.value = address.line2 || '';
+                addressCity.value = address.city;
+                addressState.value = address.state;
+                addressPincode.value = address.pincode;
+                addressLandmark.value = address.landmark || '';
+                editingAddressId = address.id;
+            } else {
+                // Add mode
+                addressModalTitle.textContent = 'Add New Address';
+                addressForm.reset();
+                editingAddressId = null;
+            }
+            
+            openModal(addressModal);
+        }
+
+        // Handle address submit
+        function handleAddressSubmit(e) {
+            e.preventDefault();
+            
+            const address = {
+                id: editingAddressId || Date.now().toString(),
+                type: addressType.value,
+                line1: addressLine1.value,
+                line2: addressLine2.value,
+                city: addressCity.value,
+                state: addressState.value,
+                pincode: addressPincode.value,
+                landmark: addressLandmark.value
+            };
+            
+            // Simple validation
+            if (!address.line1 || !address.city || !address.state || !address.pincode) {
+                showToast('Please fill in all required fields');
+                return;
+            }
+            
+            if (editingAddressId) {
+                // Update existing address
+                const index = addresses.findIndex(addr => addr.id === editingAddressId);
+                if (index !== -1) {
+                    addresses[index] = address;
+                }
+            } else {
+                // Add new address
+                addresses.push(address);
+            }
+            
+            // Save to localStorage
+            localStorage.setItem('addresses', JSON.stringify(addresses));
+            
+            // Close modal and refresh addresses list
+            closeModal(addressModal);
+            renderAddresses();
+            
+            showToast(editingAddressId ? 'Address updated' : 'Address added');
+        }
+
+        // Render addresses
+        function renderAddresses() {
+            addressesList.innerHTML = '';
+            
+            if (addresses.length === 0) {
+                addressesList.innerHTML = '<p>No addresses saved</p>';
+                return;
+            }
+            
+            addresses.forEach(address => {
+                const addressElement = document.createElement('div');
+                addressElement.className = 'address-item';
+                addressElement.innerHTML = `
+                    <h4>${address.type.charAt(0).toUpperCase() + address.type.slice(1)} Address</h4>
+                    <p>${address.line1}</p>
+                    ${address.line2 ? `<p>${address.line2}</p>` : ''}
+                    <p>${address.city}, ${address.state} - ${address.pincode}</p>
+                    ${address.landmark ? `<p>Landmark: ${address.landmark}</p>` : ''}
+                    <div class="address-actions">
+                        <button class="btn btn-outline edit-address">Edit</button>
+                        <button class="btn btn-outline delete-address">Delete</button>
+                    </div>
+                `;
+                
+                // Add event listeners
+                const editBtn = addressElement.querySelector('.edit-address');
+                const deleteBtn = addressElement.querySelector('.delete-address');
+                
+                editBtn.addEventListener('click', () => {
+                    openAddAddressModal(address);
+                });
+                
+                deleteBtn.addEventListener('click', () => {
+                    if (confirm('Are you sure you want to delete this address?')) {
+                        addresses = addresses.filter(addr => addr.id !== address.id);
+                        localStorage.setItem('addresses', JSON.stringify(addresses));
+                        renderAddresses();
+                        showToast('Address deleted');
+                    }
+                });
+                
+                addressesList.appendChild(addressElement);
+            });
+        }
+
+        // Update countdown timer
+        function updateCountdown() {
+            // Set the date we're counting down to (3 days from now)
+            const countDownDate = new Date();
+            countDownDate.setDate(countDownDate.getDate() + 3);
+            
+            // Get today's date and time
+            const now = new Date().getTime();
+            
+            // Find the distance between now and the count down date
+            const distance = countDownDate - now;
+            
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Show toast message
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('show');
+            }, 10);
+            
+            setTimeout(() => {
+                toast.classList.remove('show');
+                setTimeout(() => {
+                    document.body.removeChild(toast);
+                }, 300);
+            }, 3000);
+        }
+
+        // Initialize the app
+        document.addEventListener('DOMContentLoaded', init);
+
+        //new
+    </script>
+</body>
+</html>
